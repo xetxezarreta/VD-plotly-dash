@@ -27,12 +27,45 @@ app.layout = html.Div([
 
     # Other
     html.Div([
-        # callbacks aside
-        html.Div([]),
+        # filters
+        html.Div([
+            html.P("Filter 1"),
+            html.P("Filter 2"),
+            html.P("Filter 3"),
+        ],
+        className="container columns filter",
+        id="filters",
+        ),
+
         # precision, recall and f1 score
-        html.Div([]),
+        html.Div([
+            html.Div([
+                html.P("Precision")
+            ],
+            id="precision",
+            className="mini_container",
+            ),
+
+            html.Div([
+                html.P("Recall")
+            ],
+            id="recall",
+            className="mini_container",
+            ),
+
+            html.Div([
+                html.P("F1-Score")
+            ],
+            id="f1-score",
+            className="mini_container",
+            ),
+        ],
+        className="containers flex-display",
+        ),
+
         # graph 1
         html.Div([]),
+
         # graph 2
         html.Div([]),
     ]),

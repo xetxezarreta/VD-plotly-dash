@@ -6,3 +6,34 @@ body {
 #title {
   text-align: center;
 } 
+
+.container {
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+.mini_container {
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  margin: 10px;
+  padding: 15px;
+  position: relative;
+  box-shadow: 2px 2px 2px lightgrey;
+}
+
+.column,
+.columns {
+  margin-left: 0.5%;
+}
+
+.filter {
+  width: 25%;
+}
+
+.flex-display {
+  display: flex;
+}
