@@ -13,9 +13,13 @@ app.layout = html.Div([
     # Title
     html.Div([
         html.H1(
-            "Indian diabetes",
+            "INDIAN DIABETES",
             style={"margin-bottom": "0px"},
-        ),        
+        ), 
+        html.H3(
+            "Alvaro Huarte and Xabier Etxezarreta",
+            style={"margin-bottom": "0px"},
+        ),           
     ],
     className="one-half column",
     id="title",
