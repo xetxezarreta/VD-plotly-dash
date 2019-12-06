@@ -13,7 +13,7 @@ app.layout = html.Div([
     # Title
     html.Div([
         html.H1(
-            "INDIAN DIABETES",
+            "Indian Diabetes",
             style={"margin-bottom": "0px"},
         ), 
         html.H3(
@@ -21,11 +21,11 @@ app.layout = html.Div([
             style={"margin-bottom": "0px"},
         ),           
     ],
-    className="one-half column",
     id="title",
+    className="one-half column",
     ),
 
-    # Other
+    # dashboard
     html.Div([
         # filters
         html.Div([
@@ -33,12 +33,13 @@ app.layout = html.Div([
             html.P("Filter 2"),
             html.P("Filter 3"),
         ],
-        className="container columns filter",
         id="filters",
+        className="container columns filter",        
         ),
 
-        # precision, recall and f1 score
+        # indicators
         html.Div([
+            # Precision
             html.Div([
                 html.P("Precision")
             ],
@@ -46,6 +47,7 @@ app.layout = html.Div([
             className="mini_container",
             ),
 
+            # Recall
             html.Div([
                 html.P("Recall")
             ],
@@ -53,6 +55,7 @@ app.layout = html.Div([
             className="mini_container",
             ),
 
+            #F1-Score
             html.Div([
                 html.P("F1-Score")
             ],
@@ -60,7 +63,8 @@ app.layout = html.Div([
             className="mini_container",
             ),
         ],
-        className="containers flex-display",
+        id="indicators",
+        className="flex-display",        
         ),
 
         # graph 1
@@ -68,7 +72,10 @@ app.layout = html.Div([
 
         # graph 2
         html.Div([]),
-    ]),
+    ],
+    id="dashboard",
+    className="flex-display",
+    ),
 ])
 
 if __name__ == '__main__':

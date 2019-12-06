@@ -1,7 +1,12 @@
 body {
   background-color: #f2f2f2;
-  margin: 5%;
-  --font-family: Helvetica;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: rgb(50, 50, 50);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -30,10 +35,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 15px;
   position: relative;
   box-shadow: 2px 2px 2px lightgrey;
+  overflow: hidden;
 }
 
-.column,
-.columns {
+.column, .columns {
   margin-left: 0.5%;
 }
 
