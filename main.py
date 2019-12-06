@@ -21,9 +21,16 @@ app.layout = html.Div([
     id="title",
     ),
 
-    # Filters
+    # Other
     html.Div([
-
+        # callbacks aside
+        html.Div([]),
+        # precision, recall and f1 score
+        html.Div([]),
+        # graph 1
+        html.Div([]),
+        # graph 2
+        html.Div([]),
     ]),
 ])
 
