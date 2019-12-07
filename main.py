@@ -29,7 +29,7 @@ app.layout = html.Div([
     html.Div([
         # filters
         html.Div([
-            html.P("Filter 1"),
+            html.P("Classification Algorithm:"),
             dcc.Dropdown(
                 id='algorithm-dropdown',
                 options=[
