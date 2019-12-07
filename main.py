@@ -30,6 +30,14 @@ app.layout = html.Div([
         # filters
         html.Div([
             html.P("Filter 1"),
+            dcc.Dropdown(
+                id='algorithm-dropdown',
+                options=[
+                    {'label': 'Random Forest Classifier', 'value': 'RandomForest'},
+                    {'label': 'XGBoost Classifier', 'value': 'XGBoost'}
+                ],
+                value='RandomForest'
+            ),
             html.P("Filter 2"),
             html.P("Filter 3"),
         ],
