@@ -7,6 +7,7 @@ body {
   font-weight: 400;
   font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: rgb(50, 50, 50);
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,14 +39,17 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.column, .columns {
-  margin-left: 0.5%;
-}
-
-.filter {
+#filters {
+  float: left;
   width: 25%;
 }
 
-.flex-display {
+.indicator {
+  width: 33%;  
+}
+
+#indicators {
+  float: left;
   display: flex;
+  width: 70%;
 }

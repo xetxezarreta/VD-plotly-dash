@@ -38,11 +38,29 @@ app.layout = html.Div([
                 ],
                 value='RandomForest'
             ),
+
             html.P("Filter 2"),
-            html.P("Filter 3"),
+            dcc.Dropdown(
+                id='filter2-dropdown',
+                options=[
+                    {'label': 'Filter 2', 'value': 'Filter 2'},
+                    {'label': 'Filter 2', 'value': 'Filter 2.1'}
+                ],
+                value='Filter 2'
+            ),
+
+            html.P("Filter 3"),       
+            dcc.Dropdown(
+                id='filter3-dropdown',
+                options=[
+                    {'label': 'Filter 3', 'value': 'Filter 3'},
+                    {'label': 'Filter 3', 'value': 'Filter 3.1'}
+                ],
+                value='Filter 3'
+            ),     
         ],
         id="filters",
-        className="container columns filter",        
+        className="container",        
         ),
 
         # indicators
@@ -52,7 +70,7 @@ app.layout = html.Div([
                 html.P("Precision")
             ],
             id="precision",
-            className="mini_container",
+            className="mini_container indicator",
             ),
 
             # Recall
@@ -60,7 +78,7 @@ app.layout = html.Div([
                 html.P("Recall")
             ],
             id="recall",
-            className="mini_container",
+            className="mini_container indicator",
             ),
 
             #F1-Score
@@ -68,11 +86,10 @@ app.layout = html.Div([
                 html.P("F1-Score")
             ],
             id="f1-score",
-            className="mini_container",
+            className="mini_container indicator",
             ),
         ],
-        id="indicators",
-        className="flex-display",        
+        id="indicators",    
         ),
 
         # graph 1
