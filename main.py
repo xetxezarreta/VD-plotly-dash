@@ -4,6 +4,8 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import processing
 
+dashboard = processing.Dashboard()
+
 # Create app layout
 app = dash.Dash(__name__)
 app.layout = html.Div([
@@ -109,8 +111,9 @@ app.layout = html.Div([
     [Input("algorithm-dropdown", "value")],
 )
 def algorithm_updated(value):
-    accuracy, f1, rocauc = processing.get_indicators(value)
-    instances, value = processing.get_instances(value)
+    dashboard.update_model(value)
+    accuracy, f1, rocauc = dashboard.get_indicators()
+    instances, value = dashboard.get_instances()
     return accuracy, f1, rocauc, instances, value
 
 if __name__ == '__main__':
