@@ -128,7 +128,6 @@ def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
     traces = []    
     for name, shap in shap_values.items():  
-        print(name, shap)
         traces.append(dict(
             x=shap,
             y=name

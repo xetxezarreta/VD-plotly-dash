@@ -17,13 +17,13 @@ class Dashboard(object):
         self.y_test = y_test
         self.model = None
         self.y_pred = None
-        self.explainer = None
+        self.explainer = None       
     
     def update_model(self, algorithm_name):
         algorithm = utils.algorithms[algorithm_name]
         self.model = algorithm.fit(self.X_train, self.y_train)
         self.y_pred = self.model.predict(self.X_test)
-        self.explainer = shap.TreeExplainer(self.model)
+        self.explainer = shap.TreeExplainer(self.model)           
 
     def get_indicators(self):
         accuracy = accuracy_score(self.y_test, self.y_pred)
@@ -42,9 +42,9 @@ class Dashboard(object):
             options.append(option)    
         return options, value    
     
-    def get_shap_values(self, instance_number):                 
-        shap_values = self.explainer.shap_values(self.X_test.iloc[instance_number])
+    def get_shap_values(self, instance_number):  
+        i_shap = self.explainer.shap_values(self.X_test.iloc[0])
         dic = {}
-        for i, shap in enumerate(shap_values[0]):
+        for i, shap in enumerate(i_shap):
             dic[self.df.columns[i]] = shap            
         return dic         
