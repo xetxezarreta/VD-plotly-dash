@@ -29,6 +29,7 @@ app.layout = html.Div([
             html.P("Classification Algorithm:"),
             dcc.Dropdown(
                 id='algorithm-dropdown',
+                clearable=False,
                 options=[
                     {'label': 'DecisionTree Classifier', 'value': 'DecisionTree'},
                     {'label': 'Random Forest Classifier', 'value': 'RandomForest'},
@@ -38,7 +39,7 @@ app.layout = html.Div([
             ),
 
             html.P("Instances"),
-            dcc.Dropdown(id='instances-dropdown'),
+            dcc.Dropdown(id='instances-dropdown', clearable=False),
 
             html.P("Filter 3"),       
             dcc.Dropdown(
@@ -102,22 +103,23 @@ app.layout = html.Div([
         Output("accuracy_text", "children"),
         Output("f1_text", "children"),
         Output("rocauc_text", "children"),
+        Output("instances-dropdown", "options"),
+        Output("instances-dropdown", "value")
     ],
     [Input("algorithm-dropdown", "value")],
 )
 def update_indicators(value):
     accuracy, f1, rocauc = processing.get_indicators(value)
-    return accuracy, f1, rocauc    
+    instances, value = processing.get_instances(value)
+    return accuracy, f1, rocauc, instances, value
 
+'''
 @app.callback(
-    [
-        Output("instances-dropdown", "options")
-    ],
+    Output("instances-dropdown", "options"),
     [Input("algorithm-dropdown", "value")],
 )
 def update_instances_dropdown(value):
-    print(processing.get_instances(value))
     return processing.get_instances(value)
-
+'''
 if __name__ == '__main__':
     app.run_server(debug=True)

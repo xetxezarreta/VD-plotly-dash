@@ -27,13 +27,14 @@ def get_instances(algorithm):
     y_pred = model.predict(X_test)
 
     options = []
+    value = 0
     for i, instance in enumerate(y_test):
         option = {
-            'label': ("Instance "+ str(i)+ ": Real="+ str(instance) + " Pred="+ str(y_pred[i])),
+            'label': "Instance "+ str(i)+ " (Real="+ str(instance) + " Pred="+ str(y_pred[i]) + ")",
             'value': str(i) 
         }        
         options.append(option)     
     
-    return options
+    return options, value
 
 
