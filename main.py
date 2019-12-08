@@ -91,20 +91,7 @@ app.layout = html.Div([
 
         # graph 1
         html.Div([
-            #dcc.Graph(id='xai-graph'),
-            dcc.Graph(
-                id='example-graph',
-                figure={
-                    'data': [
-                        {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                        {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
-                    ],
-                    'layout': {
-                        'title': 'Dash Data Visualization'
-                    }
-                },
-                className="box c"
-            ),                         
+            dcc.Graph(id='xai-graph'),               
         ],
         id="xai",
         ),
@@ -132,6 +119,35 @@ def algorithm_updated(value):
     accuracy, f1, rocauc = dashboard.get_indicators()
     instances, value = dashboard.get_instances()
     return accuracy, f1, rocauc, instances, value
+
+@app.callback(    
+    Output("xai-graph", "figure"),     
+    [Input("instances-dropdown", "value")],
+)
+def instance_updated(value):
+    shap_values = dashboard.get_shap_values(value)
+    traces = []    
+    for name, shap in shap_values.items():  
+        print(name, shap)
+        traces.append(dict(
+            x=shap,
+            y=name
+        ))    
+
+    graph = {
+        'data': traces,
+        'layout': dict(
+            xaxis={'type': 'barchart', 'title': 'SHAP values', 'range':[-1, 1]},
+            yaxis={'title': 'Variable', 'range': [-1, 8]},
+            margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
+            legend={'x': 0, 'y': 1},
+            hovermode='closest',
+            transition = {'duration': 500},
+        )
+    }
+
+    return graph
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
