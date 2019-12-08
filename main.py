@@ -126,18 +126,20 @@ def algorithm_updated(value):
 )
 def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
-    traces = []    
+    traces = [shap_values]  
+    print(traces)
+    '''
     for name, shap in shap_values.items():  
         traces.append(dict(
             x=shap,
             y=name
         ))    
-
+    '''
     graph = {
         'data': traces,
         'layout': dict(
-            xaxis={'type': 'barchart', 'title': 'SHAP values', 'range':[-1, 1]},
-            yaxis={'title': 'Variable', 'range': [-1, 8]},
+            xaxis={'type': 'bar', 'title': 'SHAP values', 'range':[-1, 1]},
+            yaxis={'title': 'Variable', 'type': 'bar', 'range': [-1, 8]},
             margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
             legend={'x': 0, 'y': 1},
             hovermode='closest',
