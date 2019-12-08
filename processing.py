@@ -20,3 +20,20 @@ def get_indicators(algorithm):
     rocauc = roc_auc_score(y_test, y_pred)
 
     return accuracy, f1score, rocauc
+
+def get_instances(algorithm):
+    algorithm = utils.algorithms[algorithm]
+    model = algorithm.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    options = []
+    for i, instance in enumerate(y_test):
+        option = {
+            'label': ("Instance "+ str(i)+ ": Real="+ str(instance) + " Pred="+ str(y_pred[i])),
+            'value': str(i) 
+        }        
+        options.append(option)     
+    
+    return options
+
+

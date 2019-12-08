@@ -37,15 +37,8 @@ app.layout = html.Div([
                 value='DecisionTree'
             ),
 
-            html.P("Filter 2"),
-            dcc.Dropdown(
-                id='filter2-dropdown',
-                options=[
-                    {'label': 'Filter 2', 'value': 'Filter 2'},
-                    {'label': 'Filter 2', 'value': 'Filter 2.1'}
-                ],
-                value='Filter 2'
-            ),
+            html.P("Instances"),
+            dcc.Dropdown(id='instances-dropdown'),
 
             html.P("Filter 3"),       
             dcc.Dropdown(
@@ -114,10 +107,17 @@ app.layout = html.Div([
 )
 def update_indicators(value):
     accuracy, f1, rocauc = processing.get_indicators(value)
-    print(accuracy, f1, rocauc)
-    return accuracy, f1, rocauc
+    return accuracy, f1, rocauc    
 
-    
+@app.callback(
+    [
+        Output("instances-dropdown", "options")
+    ],
+    [Input("algorithm-dropdown", "value")],
+)
+def update_instances_dropdown(value):
+    print(processing.get_instances(value))
+    return processing.get_instances(value)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
