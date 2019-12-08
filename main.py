@@ -108,18 +108,10 @@ app.layout = html.Div([
     ],
     [Input("algorithm-dropdown", "value")],
 )
-def update_indicators(value):
+def algorithm_updated(value):
     accuracy, f1, rocauc = processing.get_indicators(value)
     instances, value = processing.get_instances(value)
     return accuracy, f1, rocauc, instances, value
 
-'''
-@app.callback(
-    Output("instances-dropdown", "options"),
-    [Input("algorithm-dropdown", "value")],
-)
-def update_instances_dropdown(value):
-    return processing.get_instances(value)
-'''
 if __name__ == '__main__':
     app.run_server(debug=True)
