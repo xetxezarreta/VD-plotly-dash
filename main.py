@@ -2,10 +2,7 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output
-import pandas as pd
-
-# load data
-df = pd.read_csv('data/diabetes.csv')
+import processing
 
 # Create app layout
 app = dash.Dash(__name__)
@@ -33,10 +30,11 @@ app.layout = html.Div([
             dcc.Dropdown(
                 id='algorithm-dropdown',
                 options=[
+                    {'label': 'DecisionTree Classifier', 'value': 'DecisionTree'},
                     {'label': 'Random Forest Classifier', 'value': 'RandomForest'},
-                    {'label': 'XGBoost Classifier', 'value': 'XGBoost'}
+                    {'label': 'Logistic Regression', 'value': 'LogisticRegression'}                     
                 ],
-                value='RandomForest'
+                value='DecisionTree'
             ),
 
             html.P("Filter 2"),
@@ -66,26 +64,29 @@ app.layout = html.Div([
         # indicators
         html.Div([
             # Precision
-            html.Div([
-                html.P("Precision")
+            html.Div([                
+                html.H1("Accuracy"),
+                html.H3(id="accuracy_text")
             ],
-            id="precision",
+            id="accuracy",
             className="mini_container indicator",
             ),
 
             # Recall
-            html.Div([
-                html.P("Recall")
+            html.Div([                
+                html.H1("F1-Score"),
+                html.H3(id="f1_text")
             ],
-            id="recall",
+            id="f1-score",
             className="mini_container indicator",
             ),
 
             #F1-Score
-            html.Div([
-                html.P("F1-Score")
+            html.Div([                
+                html.H1("ROC AUC"),
+                html.H3(id="rocauc_text")
             ],
-            id="f1-score",
+            id="roc-auc",
             className="mini_container indicator",
             ),
         ],
@@ -102,6 +103,21 @@ app.layout = html.Div([
     className="flex-display",
     ),
 ])
+
+@app.callback(
+    [
+        Output("accuracy_text", "children"),
+        Output("f1_text", "children"),
+        Output("rocauc_text", "children"),
+    ],
+    [Input("algorithm-dropdown", "value")],
+)
+def update_indicators(value):
+    accuracy, f1, rocauc = processing.get_indicators(value)
+    print(accuracy, f1, rocauc)
+    return accuracy, f1, rocauc
+
+    
 
 if __name__ == '__main__':
     app.run_server(debug=True)
