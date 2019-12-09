@@ -128,7 +128,11 @@ def algorithm_updated(value):
 def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
 
-    trace = go.Bar(x=list(shap_values.values()), y=list(shap_values.keys()), orientation='h')
+    sorted_shap = {}
+    for val in sorted(shap_values, key=lambda k: abs(shap_values[k])):
+        sorted_shap[val] = shap_values[val]
+
+    trace = go.Bar(x=list(sorted_shap.values()), y=list(sorted_shap.keys()), orientation='h')
     
     graph = {
         'data': [trace],
