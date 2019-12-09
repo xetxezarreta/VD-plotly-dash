@@ -1,6 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import plotly.graph_objs as go
 from dash.dependencies import Input, Output
 import processing
 
@@ -127,23 +128,20 @@ def algorithm_updated(value):
 def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
     traces = [shap_values]  
-    print(traces)
-    '''
-    for name, shap in shap_values.items():  
-        traces.append(dict(
-            x=shap,
-            y=name
-        ))    
-    '''
+    print(shap_values)
+
+    trace = go.Bar(x=list(shap_values.keys()), y=list(shap_values.values()))
+    
     graph = {
-        'data': traces,
-        'layout': dict(
-            xaxis={'type': 'bar', 'title': 'SHAP values', 'range':[-1, 1]},
-            yaxis={'title': 'Variable', 'type': 'bar', 'range': [-1, 8]},
-            margin={'l': 40, 'b': 40, 't': 10, 'r': 10},
-            legend={'x': 0, 'y': 1},
-            hovermode='closest',
-            transition = {'duration': 500},
+        'data': [trace],
+        'layout': go.Layout(
+            title='Instance Explainability',
+            xaxis={
+                'title': 'Values'
+            },
+            yaxis={
+                'title': 'Variables'
+            }
         )
     }
 
