@@ -29,7 +29,7 @@ app.layout = html.Div([
     html.Div([
         # filters
         html.Div([
-            html.P("Classification Algorithm:"),
+            html.P("Filter classification algorithm:"),
             dcc.Dropdown(
                 id='algorithm-dropdown',
                 clearable=False,
@@ -41,18 +41,18 @@ app.layout = html.Div([
                 value='DecisionTree'
             ),
 
-            html.P("Instances"),
-            dcc.Dropdown(id='instances-dropdown', clearable=False),
-
-            html.P("Filter 3"),       
+            html.P("Filter instances"),
             dcc.Dropdown(
-                id='filter3-dropdown',
-                options=[
-                    {'label': 'Filter 3', 'value': 'Filter 3'},
-                    {'label': 'Filter 3', 'value': 'Filter 3.1'}
-                ],
-                value='Filter 3'
-            ),     
+                id='instances-dropdown', 
+                clearable=False
+            ),
+
+            html.P("Filter correlation attributes"),       
+            dcc.Dropdown(
+                id='correlation-dropdown',
+                options=dashboard.get_variable_names(),
+                multi=True,                
+            ),
         ],
         id="filters",
         className="container",        
@@ -90,15 +90,20 @@ app.layout = html.Div([
         id="indicators",    
         ),
 
-        # graph 1
         html.Div([
-            dcc.Graph(id='xai-graph'),               
+            html.Div([
+                dcc.Graph(id='xai-graph'),               
+            ],
+            id="xai",
+            ),  
+            html.Div([
+                dcc.Graph(id='correlation-graph'),  
+            ],
+            id="correlation",
+            )
         ],
-        id="xai",
-        ),
-
-        # graph 2
-        html.Div([]),
+        id="graphs",
+        )        
     ],
     id="dashboard",
     className="flex-display",

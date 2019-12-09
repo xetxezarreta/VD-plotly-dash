@@ -49,4 +49,14 @@ class Dashboard(object):
         dic = {}
         for i, shap in enumerate(i_shap):
             dic[self.df.columns[i]] = shap            
-        return dic         
+        return dic     
+
+    def get_variable_names(self):
+        variables = []
+        for col in self.X_test.columns:
+            var = {
+                'label': col,
+                'value': col
+            }
+            variables.append(var)
+        return variables
