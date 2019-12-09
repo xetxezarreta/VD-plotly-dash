@@ -34,8 +34,8 @@ app.layout = html.Div([
                 clearable=False,
                 options=[
                     {'label': 'DecisionTree Classifier', 'value': 'DecisionTree'},
-                    {'label': 'Random Forest Classifier', 'value': 'RandomForest'},
-                    {'label': 'Logistic Regression', 'value': 'LogisticRegression'}                     
+                    {'label': 'RandomForest Classifier', 'value': 'RandomForest'},    
+                    {'label': 'XGBoost Classifier', 'value': 'XGBoost'}               
                 ],
                 value='DecisionTree'
             ),
