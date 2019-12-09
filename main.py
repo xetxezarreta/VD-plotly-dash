@@ -127,17 +127,16 @@ def algorithm_updated(value):
 )
 def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
-    traces = [shap_values]  
-    print(shap_values)
 
-    trace = go.Bar(x=list(shap_values.keys()), y=list(shap_values.values()))
+    trace = go.Bar(x=list(shap_values.values()), y=list(shap_values.keys()), orientation='h')
     
     graph = {
         'data': [trace],
         'layout': go.Layout(
             title='Instance Explainability',
             xaxis={
-                'title': 'Values'
+                'title': 'Values',
+                'range': [-0.75, 0.75]
             },
             yaxis={
                 'title': 'Variables'
