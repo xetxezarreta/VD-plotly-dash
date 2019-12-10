@@ -45,7 +45,11 @@ class Dashboard(object):
     def get_shap_values(self, instance_number):  
         if instance_number == None:
             return dict()     
-        i_shap = self.explainer.shap_values(self.X_test.iloc[int(instance_number)])[1]        
+        i_shap = self.explainer.shap_values(self.X_test.iloc[int(instance_number)])      
+        if len(i_shap) == 2:
+            i_shap = i_shap[1]
+        else:
+            i_shap = i_shap[0]
         dic = {}
         for i, shap in enumerate(i_shap):
             dic[self.df.columns[i]] = shap            
