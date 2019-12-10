@@ -52,7 +52,7 @@ app.layout = html.Div([
                 id='correlation-dropdown',
                 options=dashboard.get_variable_names(),
                 multi=True,                
-            ),
+            )            
         ],
         id="filters",
         className="container",        
