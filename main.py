@@ -162,8 +162,6 @@ def correlation_updated(value):
             'data': [trace],
             'layout': go.Layout(
                 title='Correlation',
-                plot_bgcolor = '#f9f9f9',
-                paper_bgcolor = '#f9f9f9',
                 xaxis={
                     'title': value[0],                
                 },
