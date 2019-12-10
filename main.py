@@ -132,29 +132,32 @@ def algorithm_updated(value):
 )
 def instance_updated(value):
     shap_values = dashboard.get_shap_values(value)
-
     sorted_shap = {}
     for val in sorted(shap_values, key=lambda k: abs(shap_values[k])):
         sorted_shap[val] = shap_values[val]
-
-    trace = go.Bar(x=list(sorted_shap.values()), y=list(sorted_shap.keys()), orientation='h')
-    
+    trace = go.Bar(x=list(sorted_shap.values()), y=list(sorted_shap.keys()), orientation='h')    
     graph = {
         'data': [trace],
         'layout': go.Layout(
             title='Instance Explainability',
             xaxis={
-                'title': 'Values',
+                'title': 'Shapley Values',
                 'range': [-0.75, 0.75]
-            },
-            yaxis={
-                'title': 'Variables'
             }
         )
     }
-
     return graph
 
+@app.callback(    
+    Output("correlation-graph", "figure"),     
+    [Input("correlation-dropdown", "value")],
+)
+def correlation_updated(value):
+    print(value)
+    graph = {}
+    if value != None and len(value) == 2:
+        pass    
+    return graph
 
 if __name__ == '__main__':
     app.run_server(debug=True)
