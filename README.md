@@ -1,6 +1,8 @@
 # VD_plotly_dash
 Alvaro Huarte y Xabier Etxezarreta
 
+![alt text](img/dashboard.png)
+
 ### Introducción
 El objetivo de este dashboard ha sido representar con el dataset de diabetes los resultados de la clasificación con diferentes algoritmos, la interpretabilidad de las predicciones y la correlaciones entre las variables. 
 
