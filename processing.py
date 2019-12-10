@@ -60,3 +60,7 @@ class Dashboard(object):
             }
             variables.append(var)
         return variables
+
+    def get_columns(self, column_names):
+        columns = self.df[column_names]
+        return columns

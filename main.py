@@ -156,7 +156,20 @@ def correlation_updated(value):
     print(value)
     graph = {}
     if value != None and len(value) == 2:
-        pass    
+        cols = dashboard.get_columns(value)
+        trace = go.Scatter(x=cols.iloc[:,0], y=cols.iloc[:,1], mode='markers')
+        graph = {
+            'data': [trace],
+            'layout': go.Layout(
+                title='Correlation',
+                xaxis={
+                    'title': value[0],                
+                },
+                yaxis={
+                    'title': value[1],                
+                }                
+            ),            
+        }            
     return graph
 
 if __name__ == '__main__':
