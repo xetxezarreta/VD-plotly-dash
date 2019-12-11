@@ -26,5 +26,5 @@ Como restricciones, la gráfica de correlaciones se mostrará unicamentes si se 
 ### Preprocessing
 Se han utilizado tres algoritmos basados en árboles: DecisionTree, RandomForest y XGBoost. El dataset se ha dividido en train y test, utilizando la parte de train para entrenar y la parte de test para el cáclulo de las métricas y el explainability de las instancias. 
 
-Para el cálculo de la importancia de las variables en la predicción, se ha utilizado la libreria "SHAP". Esta libreria calcula los "shapeley values" de cada variable representando la importancia y la tendencia de cada variable. 
+Para el cálculo de la importancia de las variables en la predicción, se ha utilizado la libreria "SHAP". Esta librería calcula los "shapeley values" de cada variable representando la importancia y la tendencia de cada variable. 
 
